@@ -1,0 +1,64 @@
+WW_TuneCP5_13TeV-pythia8:
+    br: 1
+    kr: 1
+    xsec: 75.83
+WZ_TuneCP5_13TeV-pythia8:
+    br: 1
+    kr: 1
+    xsec: 27.56
+ZZ_TuneCP5_13TeV-pythia8:
+    br: 1
+    kr: 1
+    xsec: 12.14
+ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8:
+    br: 1
+    kr: 1
+    xsec: 80.95
+ST_t-channel_top_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8:
+    br: 1
+    kr: 1
+    xsec: 136.02
+ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8:
+    br: 1
+    kr: 1
+    xsec: 34.91
+ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8:
+    br: 1
+    kr: 1
+    xsec: 34.97
+TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8:
+    br: 1
+    kr: 1
+    xsec: 88.3419
+TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8:
+    br: 1
+    kr: 1
+    xsec: 365.34
+TTToHadronic_TuneCP5_13TeV-powheg-pythia8:
+    br: 1
+    kr: 1
+    xsec: 377.96
+DYJetsToLL_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8:
+    br: 1
+    kr: 1
+    xsec: 5333
+DYJetsToLL_1J_TuneCP5_13TeV-amcatnloFXFX-pythia8:
+    br: 1
+    kr: 1
+    xsec: 967.7
+DYJetsToLL_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8:
+    br: 1
+    kr: 1
+    xsec: 362.2
+WJetsToLNu_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8:
+    br: 1
+    kr: 1
+    xsec: 54487.2
+WJetsToLNu_1J_TuneCP5_13TeV-amcatnloFXFX-pythia8:
+    br: 1
+    kr: 1
+    xsec: 9104.82
+WJetsToLNu_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8:
+    br: 1
+    kr: 1
+    xsec: 3376.8
