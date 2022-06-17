@@ -26,8 +26,9 @@ def main():
             if "2018" in indir:
                 ERA = "2018"
             #            continue
+            njetw = "btag_weights.json"
             for channel in [1]:
-                in_file = "python3 condor_LQ_WS.py {MC} --era={Era} --infile={indir}/{sample} --channel={channel}".format(sample=sample, indir=indir, MC=is_MC, Era=ERA,channel=channel) #, njetw=njetw)
+                in_file = "python3 condor_LQ_WS.py {MC} --era={Era} --infile={indir}/{sample} --channel={channel} --njetw=btag_weights.json".format(sample=sample, indir=indir, MC=is_MC, Era=ERA,channel=channel, njetw=njetw)
                 print("command is: " + in_file )
                 os.system(in_file)
                 new_name = sample.replace(".root","_WS_selections.root")
