@@ -112,20 +112,19 @@ class LQ_NTuple(WSProducer):
 #            'name'  : 'Nvertex',  # name to write to histogram
 #            'region': ['signal'],
 #            'axis': {'label': 'Nvertex', 'n_or_arr': 70, 'lo':0, 'hi': 70}
-#        },
-        
-#        'Z_cand_mass': {
-#            'target': 'Z_mass',
-#            'name'  : 'Z_mass_btag1',  # name to write to histogram
-#            'region': ['signal_btag1'],
-#            'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
-#        },
-#        'Z_cand_pt': {
-#            'target': 'Z_pt',
-#            'name'  : 'Z_pt_btag1',  # name to write to histogram
-#            'region': ['signal_btag1'],
-#            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
-#        },  
+#        },    
+        'Z_cand_mass': {
+            'target': 'Z_mass',
+            'name'  : 'Z_mass_btag1',  # name to write to histogram
+            'region': ['signal_btag1'],
+            'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
+        },
+        'Z_cand_pt': {
+            'target': 'Z_pt',
+            'name'  : 'Z_pt_btag1',  # name to write to histogram
+            'region': ['signal_btag1'],
+            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
+        },  
 #        'Z_cand_mass': {
 #            'target': 'Z_mass',
 #            'name'  : 'Z_mass_btag2',  # name to write to histogram
@@ -150,18 +149,18 @@ class LQ_NTuple(WSProducer):
 #            'region': ['signal_btag3'],
 #            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
 #        },  
-        'Z_cand_mass': {
-            'target': 'Z_mass',
-            'name'  : 'Z_mass_btag4',  # name to write to histogram
-            'region': ['signal_btag4'],
-            'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
-        },
-        'Z_cand_pt': {
-            'target': 'Z_pt',
-            'name'  : 'Z_pt_btag4',  # name to write to histogram
-            'region': ['signal_btag4'],
-            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
-        },  
+#        'Z_cand_mass': {
+#            'target': 'Z_mass',
+#            'name'  : 'Z_mass_btag4',  # name to write to histogram
+#            'region': ['signal_btag4'],
+#            'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
+#        },
+#        'Z_cand_pt': {
+#            'target': 'Z_pt',
+#            'name'  : 'Z_pt_btag4',  # name to write to histogram
+#            'region': ['signal_btag4'],
+#            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
+#        },  
         #Start of editing new plots in 
         
 #	    'lead_lep_pt': {
