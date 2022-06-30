@@ -495,6 +495,27 @@ class LQ_NTuple(WSProducer):
                     weight = weight * event.puWeightDown
             else:
                 weight = weight * event.puWeight
+            
+            #L1PreFiringWeight
+            try:
+                if "L1PreFiringWeight" in self.syst_suffix:
+                    if "Up" in self.syst_suffix:
+                        weight = weight * event.L1PreFiringWeight_Up
+                    else:
+                        weight = weight * event.L1PrefireWeight_Dn
+                else:
+                    weight = weight * event.L1PrefireWeight
+            except:
+                pass
+
+            #MuonRecoSF
+            if "MuonRecoSF" in self.syst_suffix:
+                if "Up" in self.syst_suffix:
+                    weight = weight * event.MuonRecoSF_Up
+                else:
+                    weight = weight * event.MuonRecoSF_Down
+            else:
+                weight = weight * event.MuonRecoSF
 
             # PDF uncertainty
             if "PDF" in self.syst_suffix:
