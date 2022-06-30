@@ -401,7 +401,6 @@ class LQ_NTuple(WSProducer):
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
 	        	#changed from 0,1,2
-	        	#"event.ngood_bjets > 1",
 	        	#"event.met_pt > 100",
 	        	#mass(mumu)
 		        "event.Z_mass > 15",
@@ -467,10 +466,10 @@ class LQ_NTuple(WSProducer):
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
-		        "event.Z_mass > 100",
+                "event.Z_mass > 100",
 		        "event.met_pt > 100",
             ],
-#            "signal_btag" : [
+#            "signal" : [
 #                "event.lep_category    == self.channel",
 #                "event.event_category    == 2",
 #                "event.met_filter == 2 ",
