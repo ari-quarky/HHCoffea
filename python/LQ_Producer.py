@@ -112,19 +112,86 @@ class LQ_NTuple(WSProducer):
 #            'name'  : 'Nvertex',  # name to write to histogram
 #            'region': ['signal'],
 #            'axis': {'label': 'Nvertex', 'n_or_arr': 70, 'lo':0, 'hi': 70}
-#        },    
+#        },
         'Z_cand_mass': {
             'target': 'Z_mass',
-            'name'  : 'Z_mass_btag1',  # name to write to histogram
-            'region': ['signal_btag1'],
-            'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
+            'name'  : 'Zlep_cand_mass',  # name to write to histogram
+            'region': ['signal_btag'],
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+            #'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
+        },    
+        'Zlep_cand_mass_QCD_B': {
+            'target': 'Z_mass',
+            'name'  : 'Zlep_cand_mass_QCD_B',  # name to write to histogram
+            'region': ['QCD_B'],
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+            #'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
         },
-        'Z_cand_pt': {
+        'Zlep_cand_mass_QCD_C': {
+            'target': 'Z_mass',
+            'name'  : 'Zlep_cand_mass_QCD_C',  # name to write to histogram
+            'region': ['QCD_C'],
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+        },
+        'Zlep_cand_mass_QCD_D': {
+            'target': 'Z_mass',
+            'name'  : 'Zlep_cand_mass_QCD_D',  # name to write to histogram
+            'region': ['QCD_D'],
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+        },
+        'Zlep_cand_mass_DYcontrol': {
+            'target': 'Z_mass',
+            'name'  : 'Zlep_cand_mass_DYcontrol',  # name to write to histogram
+            'region': ['DYcontrol'],
+            #'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr':  40, 'lo': 80, 'hi': 100}
+        },
+        'Zlep_cand_mass_DYcontrol_QCD_C': {
+            'target': 'Z_mass',
+            'name'  : 'Zlep_cand_mass_DYcontrol_QCD_C',  # name to write to histogram
+            'region': ['DYcontrol_QCD_C'],
+            #'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr':  40, 'lo': 80, 'hi': 100}
+        },
+        'Zlep_cand_mass_TTcontrol': {
+            'target': 'Z_mass',
+            'name'  : 'Zlep_cand_mass_TTcontrol',  # name to write to histogram
+            'region': ['TTcontrol'],
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+            #'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': 70, 'lo': 0, 'hi': 100}
+        },
+        'Zlep_cand_mass_TTcontrol_QCD_C': {
+            'target': 'Z_mass',
+            'name'  : 'Zlep_cand_mass_TTcontrol_QCD_C',  # name to write to histogram
+            'region': ['TTcontrol_QCD_C'],
+            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+        },
+        'Zlep_cand_pt': {
             'target': 'Z_pt',
-            'name'  : 'Z_pt_btag1',  # name to write to histogram
-            'region': ['signal_btag1'],
-            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
+            'name'  : 'Zlep_cand_pt',  # name to write to histogram
+            'region': ['signal_btag'],
+            'axis': {'label': 'Zlep_cand_pt', 'n_or_arr': zlep_bin}
         },  
+        'Zlep_cand_eta': {
+            'target': 'Z_eta',
+            'name'  : 'Zlep_cand_eta',  # name to write to histogram
+            'region': ['signal_btag'],
+            #'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': eta_bin}
+            'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': 190, 'lo': -9, 'hi': 9}
+        },  
+        'Zlep_cand_pt_QCD_C': {
+            'target': 'Z_pt',
+            'name'  : 'Zlep_cand_pt_QCD_C',  # name to write to histogram
+            'region': ['QCD_C'],
+            'axis': {'label': 'Zlep_cand_pt', 'n_or_arr': zlep_bin}
+        },  
+        'Zlep_cand_eta_QCD_C': {
+            'target': 'Z_eta',
+            'name'  : 'Zlep_cand_eta_QCD_C',  # name to write to histogram
+            'region': ['QCD_C'],
+            #'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': eta_bin}
+            'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': 190, 'lo': -9, 'hi': 9}
+        },
 #        'Z_cand_mass': {
 #            'target': 'Z_mass',
 #            'name'  : 'Z_mass_btag2',  # name to write to histogram
@@ -161,8 +228,7 @@ class LQ_NTuple(WSProducer):
 #            'region': ['signal_btag4'],
 #            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
 #        },  
-        #Start of editing new plots in 
-        
+        #Start of editing new plots in      
 #	    'lead_lep_pt': {
 #            'target': 'lead_lep_pt',
 #            'name'  : 'lead_lep_pt',  # name to write to histogram
@@ -319,23 +385,21 @@ class LQ_NTuple(WSProducer):
 #            'name'  : 'jetHT',  # name to write to histogram
 #            'region': ['signal'],
 #            'axis': {'label': 'jetHT', 'n_or_arr': zlep_bin}
-#        },
-
-    
+#        }, 
 #	    'ST': {
 #            'target': 'ST',
 #            'name'  : 'ST',  # name to write to histogram
 #            'region': ['signal'],
 #            'axis': {'label': 'ST', 'n_or_arr': ST_bin}
-#        },
-            
+#        },      
     }
     selection = {
-            "signal_btag1" : [
+            "signal_btag" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 1", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
-                "event.ngood_jets > 0",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
 	        	#changed from 0,1,2
 	        	#"event.ngood_bjets > 1",
 	        	#"event.met_pt > 100",
@@ -343,29 +407,68 @@ class LQ_NTuple(WSProducer):
 		        "event.Z_mass > 15",
 		        "event.Z_mass < 100",
             ],
-            "signal_btag2" : [
+            "QCD_B" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 2", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
-                "event.ngood_jets > 0",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
 		        "event.Z_mass > 15",
 		        "event.Z_mass < 100",
             ],
-            "signal_btag3" : [
+            "QCD_C" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 3", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
-                "event.ngood_jets > 0",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
 		        "event.Z_mass > 15",
 		        "event.Z_mass < 100",
             ],
-            "signal_btag4" : [
+            "QCD_D" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 4", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
-                "event.ngood_jets > 0",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
 		        "event.Z_mass > 15",
 		        "event.Z_mass < 100",
+            ],
+            "DYcontrol" : [
+                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category    == 1", ## 2= OS leptons, 1= SS leptons
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
+		        "event.Z_mass > 80",
+		        "event.Z_mass < 100",
+            ],
+            "DYcontrol_QCD_C" : [
+                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category    == 3", ## 2= OS leptons, 1= SS leptons
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
+		        "event.Z_mass > 80",
+		        "event.Z_mass < 100",
+            ],
+            "TTcontrol" : [
+                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category    == 1", ## 2= OS leptons, 1= SS leptons
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
+		        "event.Z_mass > 100",
+		        "event.met_pt > 100",
+            ],
+            "TTcontrol_QCD_C" : [
+                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category    == 3", ## 2= OS leptons, 1= SS leptons
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 1",
+                "event.ngood_bjets > 0",
+		        "event.Z_mass > 100",
+		        "event.met_pt > 100",
             ],
 #            "signal_btag" : [
 #                "event.lep_category    == self.channel",
@@ -375,7 +478,7 @@ class LQ_NTuple(WSProducer):
 #                "event.Z_mass > 15",
 #                "event.Z_mass < 100",
 #            ],
-        }
+    }
 
 
     def weighting(self, event: LazyDataFrame):
@@ -424,24 +527,24 @@ class LQ_NTuple(WSProducer):
 
             #Prefire Weight
             try:
-                if "PrefireWeight" in self.syst_suffix:
+                if "Prefire" in self.syst_suffix:
                     if "Up" in self.syst_suffix:
-                        weight = weight * event.PrefireWeight_Up
+                        weight = weight * event.Prefire_Up
                     else:
-                        weight = weight * event.PrefireWeight_Down
+                        weight = weight * event.Prefire_Down
                 else:
-                    weight = weight * event.PrefireWeight
+                    weight = weight * event.Prefire
             except:
                 pass
 
             #TriggerSFWeight
-            if "TriggerSFWeight" in self.syst_suffix:
+            if "TriggerSF" in self.syst_suffix:
                 if "Up" in self.syst_suffix:
-                   weight = weight * event.TriggerSFWeightUp
+                   weight = weight * event.TriggerSFUp
                 else:
-                   weight = weight * event.TriggerSFWeightDown
+                   weight = weight * event.TriggerSFDown
             else:
-                weight = weight * event.TriggerSFWeight
+                weight = weight * event.TriggerSF
 
         return weight
 
