@@ -403,8 +403,8 @@ class LQ_NTuple(WSProducer):
 	        	#changed from 0,1,2
 	        	#"event.met_pt > 100",
 	        	#mass(mumu)
-		        "event.Z_mass > 15",
-		        "event.Z_mass < 100",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
             ],
             "QCD_B" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
@@ -412,8 +412,8 @@ class LQ_NTuple(WSProducer):
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
-		        "event.Z_mass > 15",
-		        "event.Z_mass < 100",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
             ],
             "QCD_C" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
@@ -421,8 +421,8 @@ class LQ_NTuple(WSProducer):
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
-		        "event.Z_mass > 15",
-		        "event.Z_mass < 100",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
             ],
             "QCD_D" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
@@ -430,8 +430,8 @@ class LQ_NTuple(WSProducer):
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
-		        "event.Z_mass > 15",
-		        "event.Z_mass < 100",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
             ],
             "DYcontrol" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
@@ -439,8 +439,8 @@ class LQ_NTuple(WSProducer):
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
-		        "event.Z_mass > 80",
-		        "event.Z_mass < 100",
+                "event.Z_mass > 80",
+                "event.Z_mass < 100",
             ],
             "DYcontrol_QCD_C" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
@@ -448,8 +448,8 @@ class LQ_NTuple(WSProducer):
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
-		        "event.Z_mass > 80",
-		        "event.Z_mass < 100",
+                "event.Z_mass > 80",
+                "event.Z_mass < 100",
             ],
             "TTcontrol" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
@@ -457,8 +457,8 @@ class LQ_NTuple(WSProducer):
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
-		        "event.Z_mass > 100",
-		        "event.met_pt > 100",
+                "event.Z_mass > 100",
+                "event.met_pt > 100",
             ],
             "TTcontrol_QCD_C" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
@@ -467,7 +467,7 @@ class LQ_NTuple(WSProducer):
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
                 "event.Z_mass > 100",
-		        "event.met_pt > 100",
+                "event.met_pt > 100",
             ],
 #            "signal" : [
 #                "event.lep_category    == self.channel",
