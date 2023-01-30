@@ -178,7 +178,14 @@ class LQ_NTuple(WSProducer):
             'region': ['signal_btag'],
             #'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': eta_bin}
             'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': 190, 'lo': -9, 'hi': 9}
-        },  
+        }, 
+        'Zlep_cand_phi': {
+            'target': 'Z_phi',
+            'name'  : 'Zlep_cand_phi',  # name to write to histogram
+            'region': ['signal_btag'],
+            #'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': eta_bin}
+            'axis': {'label': 'Zlep_cand_phi', 'n_or_arr': phi_bin}
+        },   
         'Zlep_cand_pt_QCD_C': {
             'target': 'Z_pt',
             'name'  : 'Zlep_cand_pt_QCD_C',  # name to write to histogram
@@ -228,7 +235,7 @@ class LQ_NTuple(WSProducer):
 #            'region': ['signal_btag4'],
 #            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
 #        },  
-        #Start of editing new plots in      
+#        #Start of editing new plots in      
 #	    'lead_lep_pt': {
 #            'target': 'lead_lep_pt',
 #            'name'  : 'lead_lep_pt',  # name to write to histogram
@@ -325,25 +332,46 @@ class LQ_NTuple(WSProducer):
 #            'region': ['signal'],
 #            'axis': {'label': 'N bjets', 'n_or_arr': jets_bin}
 #        },
-#       
-#	    'ngood_jets': {
-#            'target': 'ngood_jets',
-#            'name'  : 'ngood_jets',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+#    
+#        'Z_cand_mass': {
+#            'target': 'Z_mass',
+#            'name'  : 'Zlep_cand_mass',  # name to write to histogram
+#            'region': ['signal1'],
+#            'axis': {'label': 'Zlep_cand_mass1', 'n_or_arr': zlep_bin}
+#            #'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
 #        },
-#       'ngood_jets_btagSF': {
-#            'target': 'ngood_jets',
-#            'name'  : 'ngood_jets_btagSF',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+#        'Z_cand_mass': {
+#            'target': 'Z_mass',
+#            'name'  : 'Zlep_cand_mass',  # name to write to histogram
+#            'region': ['signal2'],
+#            'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+#            #'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
 #        },
-#       'ngood_jets_btagSF_nobtagSF': {
-#            'target': 'ngood_jets',
-#            'name'  : 'ngood_jets_nobtagSF',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
-#        },
+#        'Z_cand_mass': {
+#            'target': 'Z_mass',
+#            'name'  : 'Zlep_cand_mass',  # name to write to histogram
+#            'region': ['signal3'],
+#            'axis': {'label': 'Zlep_cand_mass3', 'n_or_arr': zlep_bin}
+#            #'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
+ #       },
+	    'ngood_jets': {
+            'target': 'ngood_jets',
+            'name'  : 'ngood_jets',  # name to write to histogram
+            'region': ['signal'],
+            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+        },
+       'ngood_jets_btagSF': {
+            'target': 'ngood_jets',
+            'name'  : 'ngood_jets_btagSF',  # name to write to histogram
+            'region': ['signal4'],
+            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+        },
+       'ngood_jets_btagSF_nobtagSF': {
+            'target': 'ngood_jets',
+            'name'  : 'ngood_jets_nobtagSF',  # name to write to histogram
+            'region': ['signal5'],
+            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+        },
 #	    'QCDScale0wUp': {
 #            'target': 'QCDScale0wUp',
 #            'name'  : 'QCDScale0wUp',  # name to write to histogram
@@ -397,88 +425,156 @@ class LQ_NTuple(WSProducer):
             "signal_btag" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 1", ## 2= OS leptons, 1= SS leptons
+                #"event.lead_jet_pt > 20",
+                #"event.lead_lep_pt  > 25",
+                #"event.trail_jet_pt > 20"
+                #"event.trail_lep_pt > 15",
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
+                #"event.Z_pt < 100",
 	        	#changed from 0,1,2
 	        	#"event.met_pt > 100",
 	        	#mass(mumu)
                 "event.Z_mass > 15",
-                "event.Z_mass < 100",
+                #"event.Z_mass < 100",
+                #"event.met_pt < 93",
             ],
             "QCD_B" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 2", ## 2= OS leptons, 1= SS leptons
+                #"event.lead_jet_pt > 20",
+                #"event.lead_lep_pt  > 25",
+                #"event.trail_jet_pt > 20"
+                #"event.trail_lep_pt > 15",
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
                 "event.Z_mass > 15",
-                "event.Z_mass < 100",
+                #"event.Z_mass < 100",
+                #"event.met_pt < 93",
+                #"event.Z_pt < 100",
             ],
             "QCD_C" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 3", ## 2= OS leptons, 1= SS leptons
+                #"event.lead_jet_pt > 20",
+                #"event.lead_lep_pt  > 25",
+                #"event.trail_jet_pt > 20"
+                #"event.trail_lep_pt > 15",
                 "event.met_filter == 1 ",
+                #"event.met_pt < 75 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
                 "event.Z_mass > 15",
-                "event.Z_mass < 100",
+                #"event.Z_mass < 100",
+                #"event.met_pt < 93",
+                #"event.Z_pt < 100",
             ],
             "QCD_D" : [
                 "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
                 "event.event_category    == 4", ## 2= OS leptons, 1= SS leptons
+                #"event.lead_jet_pt > 20",
+                #"event.lead_lep_pt  > 25",
+                #"event.trail_jet_pt > 20"
+                #"event.trail_lep_pt > 15",
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
                 "event.Z_mass > 15",
-                "event.Z_mass < 100",
+                #"event.Z_mass < 100",
+                #"event.met_pt < 93",
+                #"event.Z_pt < 100",
             ],
             "DYcontrol" : [
-                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
-                "event.event_category    == 1", ## 2= OS leptons, 1= SS leptons
+                "event.lep_category == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category == 1", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
                 "event.Z_mass > 80",
                 "event.Z_mass < 100",
+                #"event.met_pt < 100",
             ],
             "DYcontrol_QCD_C" : [
-                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
-                "event.event_category    == 3", ## 2= OS leptons, 1= SS leptons
+                "event.lep_category == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category == 3", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
                 "event.ngood_bjets > 0",
                 "event.Z_mass > 80",
                 "event.Z_mass < 100",
+                #"event.met_pt < 100",
             ],
             "TTcontrol" : [
-                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
-                "event.event_category    == 1", ## 2= OS leptons, 1= SS leptons
+                "event.lep_category == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category == 1", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
-                "event.ngood_bjets > 0",
+                "event.ngood_bjets > 1",
                 "event.Z_mass > 100",
                 "event.met_pt > 100",
             ],
             "TTcontrol_QCD_C" : [
-                "event.lep_category    == self.channel", ## 1 = dimuons, 2 = dielectrons
-                "event.event_category    == 3", ## 2= OS leptons, 1= SS leptons
+                "event.lep_category == self.channel", ## 1 = dimuons, 2 = dielectrons
+                "event.event_category == 3", ## 2= OS leptons, 1= SS leptons
                 "event.met_filter == 1 ",
                 "event.ngood_jets > 1",
-                "event.ngood_bjets > 0",
+                "event.ngood_bjets > 1",
                 "event.Z_mass > 100",
                 "event.met_pt > 100",
             ],
-#            "signal" : [
-#                "event.lep_category    == self.channel",
-#                "event.event_category    == 2",
-#                "event.met_filter == 2 ",
-#                "event.ngood_jets > 0",
-#                "event.Z_mass > 15",
-#                "event.Z_mass < 100",
-#            ],
+            "signal" : [
+                "event.lep_category    == self.channel",
+                "event.event_category    == 1", #was 2
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 0",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
+           ],
+           "signal1" : [
+                "event.lep_category    == self.channel",
+                "event.event_category    == 2",
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 0",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
+           ],
+           "signal2" : [
+                "event.lep_category    == self.channel",
+                "event.event_category    == 2",
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 0",
+                "event.Z_mass > 100",
+           ],
+           "signal3" : [
+                "event.lep_category    == self.channel",
+                "event.event_category    == 2",
+                "event.met_filter == 1 ",
+                "event.ngood_jets == 1",
+                "event.met_pt > 100",
+                "event.Z_mass > 100",
+           ],
+           "signal4" : [
+                "event.lep_category    == self.channel",
+                "event.event_category    == 1",
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 0",
+                #"event.met_pt > 100",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
+           ],
+           "signal5" : [
+                "event.lep_category    == self.channel",
+                "event.event_category    == 1",
+                "event.met_filter == 1 ",
+                "event.ngood_jets > 0",
+                #"event.met_pt > 100",
+                "event.Z_mass > 15",
+                "event.Z_mass < 100",
+           ],
     }
-
+#Signal MET_filter use to be 2
 
     def weighting(self, event: LazyDataFrame):
         weight = 1.0
@@ -569,14 +665,21 @@ class LQ_NTuple(WSProducer):
         return weight
 
     def btag_weighting(self, event: LazyDataFrame, weight):
-        if self.isMC:
-            weight = weight * event.w_btag_SF
+        try:
+            if self.isMC:
+                 weight = weight * event.w_btag_SF
+        except:
+            pass
 
         return weight
 
     def my_btag_weighting(self, event: LazyDataFrame, weight, njet_weights):
-        if self.isMC:
-            weight = weight * njet_weights[event.ngood_jets]
+        try:
+            if self.isMC:
+                 weight = weight * njet_weights[event.ngood_jets]
+        except:
+            pass
+
         return weight
 
     def naming_schema(self, name, region):

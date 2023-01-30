@@ -3,7 +3,8 @@ from array import array
 import sys
 
 indirs = [
-"/eos/cms/store/group/phys_higgs/HiggsExo/HH_bbZZ_bbllqq/jlidrych/LQ/2017"
+"/eos/user/a/argonzal/LQ_rootFiles/2017"
+#"/eos/cms/store/group/phys_higgs/HiggsExo/HH_bbZZ_bbllqq/jlidrych/LQ/2017"
 ]
 
 def main():
@@ -29,6 +30,7 @@ def main():
             njetw = "btag_weights.json"
             for channel in [1]:
                 in_file = "python3 condor_LQ_WS.py {MC} --era={Era} --infile={indir}/{sample} --channel={channel} --njetw=btag_weights.json".format(sample=sample, indir=indir, MC=is_MC, Era=ERA,channel=channel, njetw=njetw)
+                #in_file = "python3 condor_LQ_WS.py {MC} --era={Era} --infile={indir}/{sample} --channel={channel}".format(sample=sample, indir=indir, MC=is_MC, Era=ERA,channel=channel)
                 print("command is: " + in_file )
                 os.system(in_file)
                 new_name = sample.replace(".root","_WS_selections.root")

@@ -394,7 +394,7 @@ def estimate_background(all_event_yields, tol=1e-16, maxiter=100, disp=False):
 
         dy_data = dy['Data']
         tt_data = tt['Data']
-
+        
         while (error > tol) and (counter < maxiter):
             tt_c_shape = residual_func(tt_c, dy_norm, tt_norm, 0, 0)
             updated_tt_norm = np.sum((tt_data - (qcd_norm * tt_c_shape + dy_norm*tt['DY'] + tt['VV'] + tt['Other'])) / np.sum(tt['TT']))
@@ -408,7 +408,9 @@ def estimate_background(all_event_yields, tol=1e-16, maxiter=100, disp=False):
             updated_qcd_norm = qcd_b_val / qcd_d_val
             error = np.sqrt((updated_qcd_norm - qcd_norm)**2 + np.abs(updated_dy_norm - dy_norm)**2 + np.abs(updated_tt_norm - tt_norm)**2)
 
-            #print(f'DY norm: {dy_norm}, TT norm: {tt_norm}, fBD: {qcd_norm}, err: {current_err}')
+            #print(f'DY norm: {dy_norm}, TT norm: {tt_norm}, fBD: {qcd_norm}, err: {error}, counter: {counter}')
+            #print(f'DY norm: {dy_norm}, TT norm: {tt_norm}, fBD: {qcd_norm}, err: {error}, tol: {tol}, counter: {counter}')
+            #print(f'DY norm: {dy_norm}, TT norm: {tt_norm}, fBD: {qcd_norm}, err: {current_err}, counter: {counter}')
 
             qcd_norm = updated_qcd_norm
             dy_norm = updated_dy_norm
@@ -424,7 +426,9 @@ def estimate_background(all_event_yields, tol=1e-16, maxiter=100, disp=False):
                   f'Converged: {error <= tol} \n'
                   f'Iterations: {counter}')
 
-        return qcd_norm, dy_norm, tt_norm
+        return qcd_norm, dy_norm, tt_norm 
+        
+        
 
     qcd_norms = []
     dy_norms = []
@@ -436,7 +440,7 @@ def estimate_background(all_event_yields, tol=1e-16, maxiter=100, disp=False):
     errTT_qcd_b = np.sqrt(qcd_b['var_TT'])
     errDY_qcd_d = np.sqrt(qcd_d['var_DY'])
     errTT_qcd_d = np.sqrt(qcd_d['var_TT'])
-
+    
     for _ in range (0, 1000): 
         randDY = np.random.normal(0, 1, size=dy['Data'].shape)
         randTT = np.random.normal(0, 1, size=tt['Data'].shape)
@@ -513,8 +517,8 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
     binup = bins[1:]
     xerr = np.diff(bins)*0.5
 
-    upper.errorbar(binc, Data, xerr = None, yerr = np.sqrt(Data), fmt = 'o',
-                   zorder=10, color='black', label='Data', markersize=3)
+    upper.errorbar(binc, Data, xerr = None, yerr = np.sqrt(np.abs(Data)), fmt = 'o',
+                   zorder=10, color='black', label='Data', markersize=3)  #changed to np.abs
     all_weights = np.vstack([event_yields['VV'],
                              event_yields['Other'],
                              event_yields['QCD_estimate'],
@@ -561,7 +565,7 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
     lower.set_xlabel(name, x=1, ha='right')
     lower.set_ylabel("Data/MC", fontsize = 10)
     lower.set_ylim(0.5, 1.5)
-    yerr = np.sqrt(Data) / MC
+    yerr = np.abs(np.sqrt(Data) / MC)  #changed to np.abs
 
     chi2 = 0
     nBins = 0

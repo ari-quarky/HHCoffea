@@ -66,11 +66,12 @@ ext_syst = []
 modules_era = []
 
 modules_era.append(LQ_NTuple(isMC=options.isMC, era=int(options.era), do_syst=1, syst_var='', channel=options.channel, sample=options.dataset, njetw=options.njetw))#,
+#modules_era.append(LQ_NTuple(isMC=options.isMC, era=int(options.era), do_syst=1, syst_var='', channel=options.channel, sample=options.dataset))#, njetw=options.njetw))#,
 if options.isMC and options.doSyst==1:
    for sys in pro_syst:
        for var in ["Up", "Down"]:
            modules_era.append(LQ_NTuple(options.isMC, str(options.era), do_syst=1,
-                                    syst_var=sys + var, sample=options.dataset, njetw=options.njetw))#,
+                                    syst_var=sys + var, sample=options.dataset))#, njetw=options.njetw))#,
 
    
    for sys in ext_syst:

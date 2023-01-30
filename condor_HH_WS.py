@@ -64,7 +64,7 @@ ext_syst = []
 
 modules_era = []
 
-modules_era.append(HH_NTuple(isMC=options.isMC, era=int(options.era), do_syst=1, syst_var='', sample=options.dataset, njetw=options.njetw))#,
+modules_era.append(LQ_NTuple(isMC=options.isMC, era=int(options.era), do_syst=1, syst_var='', sample=options.dataset, njetw=options.njetw))#,
 #                         haddFileName="tree_%s.root" % str(options.jobNum)))
 if options.isMC and options.doSyst==1:
    for sys in pro_syst:
@@ -76,7 +76,7 @@ if options.isMC and options.doSyst==1:
    for sys in ext_syst:
        for var in ["Up", "Down"]:
            modules_era.append(
-               HH_NTuple(
+               LQ_NTuple(
                    options.isMC, str(options.era),
                    do_syst=1, syst_var=sys + var,
                    weight_syst=True,
