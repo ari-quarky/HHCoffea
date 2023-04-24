@@ -66,3 +66,87 @@ DYJetsToLL_M-10to50_TuneCP5_13TeV-madgraphMLM-pythia8:
     br: 1
     kr: 1
     xsec: 15810
+LQToBMu_M-300_single_coupling0p1_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.02076
+LQToBMu_M-300_single_coupling0p3_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1 
+    xsec: 0.1869
+LQToBMu_M-300_single_coupling0p5_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1 
+    xsec: 0.5191
+LQToBMu_M-300_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1 
+    xsec: 2.08
+UL17_LQToBMu_M-500_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.176
+UL17_LQToBMu_M-500_single_coupling0p1_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.001751
+UL17_LQToBMu_M-500_single_coupling0p3_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.01587
+UL17_LQToBMu_M-500_single_coupling0p5_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.04408
+UL17_LQToBMu_M-1000_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00353
+UL17_LQToBMu_M-1000_single_coupling0p1_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00003528
+UL17_LQToBMu_M-1000_single_coupling0p3_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.000316
+UL17_LQToBMu_M-1000_single_coupling0p5_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0008819
+LQToBMu_M-1000_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00353
+LQToBMu_M-1000_single_coupling0p1_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00003528
+UL17_LQToBMu_M-400_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.534
+UL17_LQToBMu_M-600_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0674
+UL17_LQToBMu_M-700_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0289
+UL17_LQToBMu_M-800_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0134
+UL17_LQToBMu_M-900_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00664
+UL17_LQToBMu_M-1100_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00192
+UL17_LQToBMu_M-1200_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00108

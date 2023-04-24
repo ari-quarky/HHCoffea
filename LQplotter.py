@@ -191,7 +191,6 @@ def get_bins_and_event_yields(histograms, normalizations, year, filter_categorie
         file_to_category = json.load(infile)
 
     categories = set(file_to_category.values())
-  
     if filter_categories:
         for category in ['QCD', 'NonResVBF', 'Radion', 'Graviton', 'NonRes', 'NonResSM']:
             categories.remove(category)
@@ -209,7 +208,6 @@ def get_bins_and_event_yields(histograms, normalizations, year, filter_categorie
     logging.info('Getting bins and event yields.')
 
     arb_key = next(iter(histograms))
-
     for idx, (name, roothist) in enumerate(tqdm(histograms[arb_key])):
         name = name.decode("utf-8")
         name = name.replace(";1", "")
@@ -228,7 +226,6 @@ def get_bins_and_event_yields(histograms, normalizations, year, filter_categorie
         output['Other'] = output['SingleTop'] + output['WJets']
         output_var['Other'] = output_var['SingleTop'] + output_var['WJets']
         total_var = output_var['Other'] + output_var['DY'] + output_var['TT'] + output_var['VV']
-
         for category in output:
             df_dict[category].append(output[category])
             df_dict['var_'+category].append(output_var[category])
@@ -272,7 +269,10 @@ def get_bins_and_event_yields(histograms, normalizations, year, filter_categorie
                 print(f'Yield {y}: {event_yields[y]*normalizations[y]}')
 
     logging.info('Finished getting bins and event yields.')
+    for key in df_dict:
+        print(key, len(df_dict[key]))
     return pd.DataFrame(df_dict)
+    #print(df_dict)
 
 def btag_ratio(all_event_yields, year, filepath, overwrite):
     names_for_njets = np.array(['ngood_jets', 'ngood_jets_btagSF'])
@@ -501,14 +501,21 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
 
     event_yields['DY'] *= bkgd_norm[1]
     event_yields['TT'] *= bkgd_norm[2]
+    Signal = event_yields['Signal_LQ_Mass400']
+    #Signal1 = event_yields['Signal_LQ_Mass600']
+    #Signal2 = event_yields['Signal_LQ_Mass700']
+    #Signal3 = event_yields['Signal_LQ_Mass800']    
+
+    #Signal4 = event_yields['Signal_LQ_Mass500']
 
     mc_categories = ['DY', 'TT', 'VV', 'QCD_estimate']
     MC = event_yields[mc_categories].sum()
     Data = event_yields['Data']
+    #LQ = event_yields['LQ']
     Other = event_yields['Other']
     name = event_yields['sample_name']
     bins = event_yields['bins']
-
+    #print(LQ)
     MC += Other
 
     # The first bin has a value of 0 and will give a warning.
@@ -517,8 +524,12 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
     binup = bins[1:]
     xerr = np.diff(bins)*0.5
 
+    #Dots on plot for Data
     upper.errorbar(binc, Data, xerr = None, yerr = np.sqrt(np.abs(Data)), fmt = 'o',
                    zorder=10, color='black', label='Data', markersize=3)  #changed to np.abs
+    #Dots on plot for LQ              
+    #upper.errorbar(binc, LQ, xerr = None, yerr = np.sqrt(np.abs(LQ)), fmt = 'o',
+    #               zorder=10, color='red', label='LQ', markersize=3) 
     all_weights = np.vstack([event_yields['VV'],
                              event_yields['Other'],
                              event_yields['QCD_estimate'],
@@ -539,6 +550,61 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
     upper.hist(x=all_x, bins=bins, weights=all_weights,
                histtype='stepfilled', edgecolor='black', zorder=1,
                stacked=True, color=plotting_colors, label=labels)
+
+    upper.stairs(
+           edges= bins,
+           values= Signal,
+           # hatch="///",
+           label="LQ M400",
+           #label="VBF cv,c2v,c3=1 (1pb)",
+           facecolor="red",
+           linewidth=1,
+           color="red",
+    )
+
+#    upper.stairs(
+#           edges= bins,
+#           values= Signal1,
+#           # hatch="///",
+#           label="LQ M600",
+#           #label="VBF cv,c2v,c3=1 (1pb)",
+#           facecolor="orchid",
+#           linewidth=1,
+#           color="orchid",
+#    )
+
+#    upper.stairs(
+#           edges= bins,
+#           values= Signal2,
+#           # hatch="///",
+#           label="LQ M700",
+#           #label="VBF cv,c2v,c3=1 (1pb)",
+#           facecolor="green",
+#           linewidth=1,
+#           color="green",
+#    )
+
+#    upper.stairs(
+#           edges= bins,
+#           values= Signal3,
+#           # hatch="///",
+#           label="LQ M800",
+#           #label="VBF cv,c2v,c3=1 (1pb)",
+#           facecolor="blue",
+#           linewidth=1,
+#           color="blue",
+#    )
+
+#    upper.stairs(
+#           edges= bins,
+#           values= Signal4,
+#           # hatch="///",
+#           label="LQ M500",
+#           #label="VBF cv,c2v,c3=1 (1pb)",
+#           facecolor="orange",
+#           linewidth=1,
+#           color="orange",
+#    )
 
     upper.fill_between(binup, MC - np.sqrt(event_yields['var']), MC + np.sqrt(event_yields['var']), step='pre', hatch='///', alpha=0, zorder=2, label="MC Stat Err")
 
@@ -678,9 +744,9 @@ def main():
     sample_paths, hist_paths = cleanup(args.sample_dir, args.hist_dir, xsections)
     histograms = get_histograms(hist_paths, args.year, args.channel)
     normalizations = get_normalizations(sample_paths, xsections, list(histograms.keys()), args.year)
-
+    #print(histograms)
     df = get_bins_and_event_yields(histograms, normalizations, args.year, filter_categories=args.filter_categories, print_yields=args.yields)
-
+    
     if args.nonorm:
         df['QCD_estimate'] = df.apply(lambda x: np.zeros(shape=x['Data'].shape[0]), axis=1)
         bkgd_norm = np.array([1.0, 1.0, 1.0])
@@ -691,7 +757,7 @@ def main():
     else:
         bkgd_norm = estimate_background(df)
         df = scale_cregions(df, *bkgd_norm)
-
+    print(df)
     logging.info('Making plots.')
 
     if not args.series:

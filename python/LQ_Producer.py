@@ -143,7 +143,7 @@ class LQ_NTuple(WSProducer):
             'target': 'Z_mass',
             'name'  : 'Zlep_cand_mass_DYcontrol',  # name to write to histogram
             'region': ['DYcontrol'],
-            #'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
+           #'axis': {'label': 'Zlep_cand_mass', 'n_or_arr': zlep_bin}
             'axis': {'label': 'Zlep_cand_mass', 'n_or_arr':  40, 'lo': 80, 'hi': 100}
         },
         'Zlep_cand_mass_DYcontrol_QCD_C': {
@@ -199,6 +199,8 @@ class LQ_NTuple(WSProducer):
             #'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': eta_bin}
             'axis': {'label': 'Zlep_cand_eta', 'n_or_arr': 190, 'lo': -9, 'hi': 9}
         },
+#
+
 #        'Z_cand_mass': {
 #            'target': 'Z_mass',
 #            'name'  : 'Z_mass_btag2',  # name to write to histogram
@@ -236,30 +238,30 @@ class LQ_NTuple(WSProducer):
 #            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
 #        },  
 #        #Start of editing new plots in      
-#	    'lead_lep_pt': {
-#            'target': 'lead_lep_pt',
-#            'name'  : 'lead_lep_pt',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'lead lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
-#        },
-#	    'lead_lep_eta': {
-#            'target': 'lead_lep_eta',
-#            'name'  : 'lead_lep_eta',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'lead lep eta (GeV)', 'n_or_arr': eta_bin}
-#        },
-#	    'lead_lep_phi': {
-#            'target': 'lead_lep_phi',
-#            'name'  : 'lead_lep_phi',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'lead lep phi (GeV)', 'n_or_arr': phi_bin}
-#        },
-#	    'trail_lep_pt': {
-#            'target': 'trail_lep_pt',
-#            'name'  : 'trail_lep_pt',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'trail lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
-#        },
+	    'lead_lep_pt': {
+            'target': 'lead_lep_pt',
+            'name'  : 'lead_lep_pt',  # name to write to histogram
+            'region': ['signal'],
+            'axis': {'label': 'lead lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
+        },
+	    'lead_lep_eta': {
+            'target': 'lead_lep_eta',
+            'name'  : 'lead_lep_eta',  # name to write to histogram
+            'region': ['signal'],
+            'axis': {'label': 'lead lep eta (GeV)', 'n_or_arr': eta_bin}
+        },
+	    'lead_lep_phi': {
+            'target': 'lead_lep_phi',
+            'name'  : 'lead_lep_phi',  # name to write to histogram
+            'region': ['signal'],
+            'axis': {'label': 'lead lep phi (GeV)', 'n_or_arr': phi_bin}
+        },
+	    'trail_lep_pt': {
+            'target': 'trail_lep_pt',
+            'name'  : 'trail_lep_pt',  # name to write to histogram
+            'region': ['signal'],
+            'axis': {'label': 'trail lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
+        },
 #        'trail_lep_eta': {
 #            'target': 'trail_lep_eta',
 #            'name'  : 'trail_lep_eta',  # name to write to histogram
@@ -408,18 +410,18 @@ class LQ_NTuple(WSProducer):
 #            'region': ['signal'],
 #            'axis': {'label': 'QCDScale2wDown', 'n_or_arr': QCD_bin}
 #        },
-#	    'jetHT': {
-#            'target': 'jetHT',
-#            'name'  : 'jetHT',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'jetHT', 'n_or_arr': zlep_bin}
-#        }, 
-#	    'ST': {
-#            'target': 'ST',
-#            'name'  : 'ST',  # name to write to histogram
-#            'region': ['signal'],
-#            'axis': {'label': 'ST', 'n_or_arr': ST_bin}
-#        },      
+	    'jetHT': {
+            'target': 'jetHT',
+            'name'  : 'jetHT',  # name to write to histogram
+            'region': ['signal'],
+            'axis': {'label': 'jetHT', 'n_or_arr': zlep_bin}
+        }, 
+	    'ST': {
+            'target': 'ST',
+            'name'  : 'ST',  # name to write to histogram
+            'region': ['signal'],
+            'axis': {'label': 'ST', 'n_or_arr': ST_bin}
+        },      
     }
     selection = {
             "signal_btag" : [
@@ -584,14 +586,17 @@ class LQ_NTuple(WSProducer):
             return "ERROR: weight branch doesn't exist"
 
         if self.isMC:
-            if "puWeight" in self.syst_suffix:
-                if "Up" in self.syst_suffix:
-                    weight = weight * event.puWeightUp
+            try:
+                if "puWeight" in self.syst_suffix:
+                    if "Up" in self.syst_suffix:
+                        weight = weight * event.puWeightUp
+                    else:
+                        weight = weight * event.puWeightDown
                 else:
-                    weight = weight * event.puWeightDown
-            else:
-                weight = weight * event.puWeight
-            
+                    weight = weight * event.puWeight
+            except:
+                pass
+
             #L1PreFiringWeight
             try:
                 if "L1PreFiringWeight" in self.syst_suffix:
@@ -605,13 +610,16 @@ class LQ_NTuple(WSProducer):
                 pass
 
             #MuonRecoSF
-            if "MuonRecoSF" in self.syst_suffix:
-                if "Up" in self.syst_suffix:
-                    weight = weight * event.MuonRecoSF_Up
+            try:
+                if "MuonRecoSF" in self.syst_suffix:
+                    if "Up" in self.syst_suffix:
+                        weight = weight * event.MuonRecoSF_Up
+                    else:
+                        weight = weight * event.MuonRecoSF_Down
                 else:
-                    weight = weight * event.MuonRecoSF_Down
-            else:
-                weight = weight * event.MuonRecoSF
+                    weight = weight * event.MuonRecoSF
+            except:
+                pass
 
             # PDF uncertainty
             if "PDF" in self.syst_suffix:
@@ -654,14 +662,16 @@ class LQ_NTuple(WSProducer):
                 pass
 
             #TriggerSFWeight
-            if "TriggerSF" in self.syst_suffix:
-                if "Up" in self.syst_suffix:
-                   weight = weight * event.TriggerSFUp
+            try:
+                if "TriggerSF" in self.syst_suffix:
+                    if "Up" in self.syst_suffix:
+                       weight = weight * event.TriggerSFUp
+                    else:
+                       weight = weight * event.TriggerSFDown
                 else:
-                   weight = weight * event.TriggerSFDown
-            else:
-                weight = weight * event.TriggerSF
-
+                    weight = weight * event.TriggerSF
+            except:
+                pass
         return weight
 
     def btag_weighting(self, event: LazyDataFrame, weight):
