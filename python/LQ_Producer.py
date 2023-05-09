@@ -238,30 +238,30 @@ class LQ_NTuple(WSProducer):
 #            'axis': {'label': 'Z #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
 #        },  
 #        #Start of editing new plots in      
-	    'lead_lep_pt': {
-            'target': 'lead_lep_pt',
-            'name'  : 'lead_lep_pt',  # name to write to histogram
-            'region': ['signal'],
-            'axis': {'label': 'lead lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
-        },
-	    'lead_lep_eta': {
-            'target': 'lead_lep_eta',
-            'name'  : 'lead_lep_eta',  # name to write to histogram
-            'region': ['signal'],
-            'axis': {'label': 'lead lep eta (GeV)', 'n_or_arr': eta_bin}
-        },
-	    'lead_lep_phi': {
-            'target': 'lead_lep_phi',
-            'name'  : 'lead_lep_phi',  # name to write to histogram
-            'region': ['signal'],
-            'axis': {'label': 'lead lep phi (GeV)', 'n_or_arr': phi_bin}
-        },
-	    'trail_lep_pt': {
-            'target': 'trail_lep_pt',
-            'name'  : 'trail_lep_pt',  # name to write to histogram
-            'region': ['signal'],
-            'axis': {'label': 'trail lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
-        },
+#	    'lead_lep_pt': {
+#            'target': 'lead_lep_pt',
+#            'name'  : 'lead_lep_pt',  # name to write to histogram
+#            'region': ['signal'],
+#            'axis': {'label': 'lead lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
+#        },
+#	    'lead_lep_eta': {
+#            'target': 'lead_lep_eta',
+#            'name'  : 'lead_lep_eta',  # name to write to histogram
+#            'region': ['signal'],
+#            'axis': {'label': 'lead lep eta (GeV)', 'n_or_arr': eta_bin}
+#        },
+#	    'lead_lep_phi': {
+#            'target': 'lead_lep_phi',
+#            'name'  : 'lead_lep_phi',  # name to write to histogram
+#            'region': ['signal'],
+#            'axis': {'label': 'lead lep phi (GeV)', 'n_or_arr': phi_bin}
+#        },
+#	    'trail_lep_pt': {
+#            'target': 'trail_lep_pt',
+#            'name'  : 'trail_lep_pt',  # name to write to histogram
+#            'region': ['signal'],
+#            'axis': {'label': 'trail lep #it{p}_{T} (GeV)', 'n_or_arr': zlep_bin}
+#        },
 #        'trail_lep_eta': {
 #            'target': 'trail_lep_eta',
 #            'name'  : 'trail_lep_eta',  # name to write to histogram
@@ -356,24 +356,31 @@ class LQ_NTuple(WSProducer):
 #            'axis': {'label': 'Zlep_cand_mass3', 'n_or_arr': zlep_bin}
 #            #'axis': {'label': 'Z mass (GeV)', 'n_or_arr': 80, 'lo':50, 'hi': 130}
  #       },
-	    'ngood_jets': {
-            'target': 'ngood_jets',
-            'name'  : 'ngood_jets',  # name to write to histogram
-            'region': ['signal'],
-            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
-        },
-       'ngood_jets_btagSF': {
-            'target': 'ngood_jets',
-            'name'  : 'ngood_jets_btagSF',  # name to write to histogram
-            'region': ['signal4'],
-            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
-        },
-       'ngood_jets_btagSF_nobtagSF': {
-            'target': 'ngood_jets',
-            'name'  : 'ngood_jets_nobtagSF',  # name to write to histogram
-            'region': ['signal5'],
-            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
-        },
+
+
+
+#	'ngood_jets': {
+#            'target': 'ngood_jets',
+#            'name'  : 'ngood_jets',  # name to write to histogram
+#            'region': ['signal'],
+#            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+#        },
+#       'ngood_jets_btagSF': {
+#            'target': 'ngood_jets',
+#            'name'  : 'ngood_jets_btagSF',  # name to write to histogram
+#            'region': ['signal4'],
+#            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+#        },
+#       'ngood_jets_btagSF_nobtagSF': {
+#            'target': 'ngood_jets',
+#            'name'  : 'ngood_jets_nobtagSF',  # name to write to histogram
+#            'region': ['signal5'],
+#            'axis': {'label': 'ngood_jets', 'n_or_arr': 21, 'lo': -0.5, 'hi': 20.5}
+#        },
+
+
+
+
 #	    'QCDScale0wUp': {
 #            'target': 'QCDScale0wUp',
 #            'name'  : 'QCDScale0wUp',  # name to write to histogram
@@ -410,16 +417,16 @@ class LQ_NTuple(WSProducer):
 #            'region': ['signal'],
 #            'axis': {'label': 'QCDScale2wDown', 'n_or_arr': QCD_bin}
 #        },
-	    'jetHT': {
-            'target': 'jetHT',
-            'name'  : 'jetHT',  # name to write to histogram
-            'region': ['signal'],
-            'axis': {'label': 'jetHT', 'n_or_arr': zlep_bin}
-        }, 
+#	    'jetHT': {
+#            'target': 'jetHT',
+#            'name'  : 'jetHT',  # name to write to histogram
+#            'region': ['signal'],
+#            'axis': {'label': 'jetHT', 'n_or_arr': zlep_bin}
+#        }, 
 	    'ST': {
             'target': 'ST',
             'name'  : 'ST',  # name to write to histogram
-            'region': ['signal'],
+            'region': ['signal_btag'],
             'axis': {'label': 'ST', 'n_or_arr': ST_bin}
         },      
     }

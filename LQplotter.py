@@ -221,6 +221,7 @@ def get_bins_and_event_yields(histograms, normalizations, year, filter_categorie
         for key, value in histograms.items():
             event_yields[key] = np.abs(value[idx][1].numpy())[0]
             event_variances[key] = np.abs(value[idx][1].variances)
+        
         output = normalize_event_yields(event_yields, normalizations, file_to_category)
         output_var = normalize_event_yields(event_variances, normalizations, file_to_category, var=True)
         output['Other'] = output['SingleTop'] + output['WJets']
@@ -250,7 +251,8 @@ def get_bins_and_event_yields(histograms, normalizations, year, filter_categorie
                 y = [
                     'DYJetsToLL_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8',
                     'DYJetsToLL_1J_TuneCP5_13TeV-amcatnloFXFX-pythia8',
-                    'DYJetsToLL_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8'
+                    'DYJetsToLL_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8',
+                    #'UL17_LQToBMu_M-400_single_TuneCP2_13TeV-madgraph-pythia8'
                 ]
             if year == '2018':
                 y = ['GluGluToHHTo2B2ZTo2L2J_node_SM_TuneCP5_PSWeights_13TeV-madgraph-pythia8',
@@ -502,11 +504,11 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
     event_yields['DY'] *= bkgd_norm[1]
     event_yields['TT'] *= bkgd_norm[2]
     Signal = event_yields['Signal_LQ_Mass400']
-    #Signal1 = event_yields['Signal_LQ_Mass600']
-    #Signal2 = event_yields['Signal_LQ_Mass700']
-    #Signal3 = event_yields['Signal_LQ_Mass800']    
+    Signal1 = event_yields['Signal_LQ_Mass600']
+    Signal2 = event_yields['Signal_LQ_Mass700']
+    Signal3 = event_yields['Signal_LQ_Mass800']    
 
-    #Signal4 = event_yields['Signal_LQ_Mass500']
+    Signal4 = event_yields['Signal_LQ_Mass900']
 
     mc_categories = ['DY', 'TT', 'VV', 'QCD_estimate']
     MC = event_yields[mc_categories].sum()
@@ -562,44 +564,44 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
            color="red",
     )
 
-#    upper.stairs(
-#           edges= bins,
-#           values= Signal1,
-#           # hatch="///",
-#           label="LQ M600",
-#           #label="VBF cv,c2v,c3=1 (1pb)",
-#           facecolor="orchid",
-#           linewidth=1,
-#           color="orchid",
-#    )
+    upper.stairs(
+           edges= bins,
+           values= Signal1,
+           # hatch="///",
+           label="LQ M600", # coupling 0.1",
+           #label="VBF cv,c2v,c3=1 (1pb)",
+           facecolor="orchid",
+           linewidth=1,
+           color="orchid",
+    )
 
-#    upper.stairs(
-#           edges= bins,
-#           values= Signal2,
-#           # hatch="///",
-#           label="LQ M700",
-#           #label="VBF cv,c2v,c3=1 (1pb)",
-#           facecolor="green",
-#           linewidth=1,
-#           color="green",
-#    )
+    upper.stairs(
+           edges= bins,
+           values= Signal2,
+           # hatch="///",
+           label="LQ M700", #coupling 0.3",
+           #label="VBF cv,c2v,c3=1 (1pb)",
+           facecolor="green",
+           linewidth=1,
+           color="green",
+    )
 
-#    upper.stairs(
-#           edges= bins,
-#           values= Signal3,
-#           # hatch="///",
-#           label="LQ M800",
-#           #label="VBF cv,c2v,c3=1 (1pb)",
-#           facecolor="blue",
-#           linewidth=1,
-#           color="blue",
-#    )
+    upper.stairs(
+           edges= bins,
+           values= Signal3,
+           # hatch="///",
+           label="LQ M800", #coupling 0.5",
+           #label="VBF cv,c2v,c3=1 (1pb)",
+           facecolor="blue",
+           linewidth=1,
+           color="blue",
+    )
 
 #    upper.stairs(
 #           edges= bins,
 #           values= Signal4,
 #           # hatch="///",
-#           label="LQ M500",
+#           label="LQ M900",
 #           #label="VBF cv,c2v,c3=1 (1pb)",
 #           facecolor="orange",
 #           linewidth=1,
@@ -682,7 +684,7 @@ def new_plotting(event_yields, bkgd_norm, year, channel, outdir='', print_yields
         lower_label*0.95,max_y*0.1,r'$\chi^{2}$/ndf = '+f'{chi2:.2f}/{nBins} = {chi2/nBins:.2f}',
         fontsize=8,
     )
-
+    print("Signal: ",Signal)
     upper.legend()
     fig.savefig(os.path.join(outdir, f'{name}_{year}.png'), bbox_inches='tight')
     plt.close()
@@ -769,7 +771,7 @@ def main():
     else:
         for rowidx in range(df.shape[0]):
             new_plotting(df.iloc[rowidx], bkgd_norm, args.year, args.channel, outdir=outdir, print_yields=args.yields)
-
+    
     logging.info(f'Finished making plots and saved to {outdir}.')
 
 if __name__ == '__main__':

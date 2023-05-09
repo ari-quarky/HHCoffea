@@ -114,18 +114,10 @@ UL17_LQToBMu_M-1000_single_coupling0p5_TuneCP2_13TeV-madgraph-pythia8:
     br: 1
     kr: 1
     xsec: 0.0008819
-LQToBMu_M-1000_single_TuneCP2_13TeV-madgraph-pythia8:
-    br: 1
-    kr: 1
-    xsec: 0.00353
-LQToBMu_M-1000_single_coupling0p1_TuneCP2_13TeV-madgraph-pythia8:
-    br: 1
-    kr: 1
-    xsec: 0.00003528
 UL17_LQToBMu_M-400_single_TuneCP2_13TeV-madgraph-pythia8:
     br: 1
     kr: 1
-    xsec: 0.534
+    xsec: 10000 #0.534
 UL17_LQToBMu_M-600_single_TuneCP2_13TeV-madgraph-pythia8:
     br: 1
     kr: 1
@@ -150,3 +142,59 @@ UL17_LQToBMu_M-1200_single_TuneCP2_13TeV-madgraph-pythia8:
     br: 1
     kr: 1
     xsec: 0.00108
+LQToBMu_M-500_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.176
+LQToBMu_M-500_single_coupling0p1_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.001751
+LQToBMu_M-500_single_coupling0p3_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.01587
+LQToBMu_M-500_single_coupling0p5_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.04408
+LQToBMu_M-600_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0674
+LQToBMu_M-1000_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00353
+LQToBMu_M-1000_single_coupling0p1_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00003528
+LQToBMu_M-1000_single_coupling0p3_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.000316
+LQToBMu_M-1000_single_coupling0p5_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0008819
+LQToBMu_M-400_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.534
+LQToBMu_M-600_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0674
+LQToBMu_M-700_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0289
+LQToBMu_M-800_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.0134
+LQToBMu_M-900_single_TuneCP2_13TeV-madgraph-pythia8:
+    br: 1
+    kr: 1
+    xsec: 0.00664
