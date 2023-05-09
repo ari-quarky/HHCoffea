@@ -3,11 +3,14 @@ adapted from SUEP Coffea. HH analysis using [Coffea](https://coffeateam.github.i
 
 ## Quick start
 ```bash
-cmsrel CMSSW_10_6_4
-cd CMSSW_10_6_4/src
-cmsenv
-
-git clone git@github.com:vivannguyen/HHCoffea.git
+mkdir LQ
+cd LQ 
+git clone git@github.com:ari-quarky/HHCoffea.git
+cd HHCoffea/
+mkdir -p Plots/Muon/2017
+singularity shell -B ${PWD} -B /afs -B /eos /cvmfs/unpacked.cern.ch/registry.hub.docker.com/coffeateam/coffea-dask:latest
+python3 reader.py
+python LQplotter.py --sample_dir /eos/user/a/argonzal/LQ_rootFiles/2017/ --hist_dir Plots/Muon/2017/ --xfile xsections_UL2017.yaml --outdir plots_2017_LQ_test/ --year 2017 --channel muon 
 ```
 
 ## Merge files for coffea
