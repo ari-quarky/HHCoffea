@@ -14,7 +14,7 @@ singularity shell -B ${PWD} -B /afs -B /eos /cvmfs/unpacked.cern.ch/registry.hub
 ```
 
 ## Make/Edit Histograms and Plots
-If you want to add different types of histograms, adjust the selections, or adjust the weight/scale factors the exception being the Btag scaling factor, go into HHCoffea/python/LQ_Producer.py and make your edits. What reader.py does is make and get the histograms out of the NTuples and stores them for our next step. Make sure you update xsections_UL2017.yaml and UL2017_sample_reference.json when you add a new NTuples into your list. The NTuples for me are stored under: /eos/user/a/argonzal/LQ_rootFiles/2017/
+If you want to add different types of histograms, adjust the selections, or adjust the weight/scale factors the exception being the Btag scaling factor, go into HHCoffea/python/LQ_Producer.py and make your edits. What reader.py does is make and get the histograms out of the NTuples and stores them for our next step. Make sure you update xsections_UL2017.yaml and UL2017_sample_reference.json when you add new NTuples into your list. The NTuples for me are stored under: /eos/user/a/argonzal/LQ_rootFiles/2017/
 ```bash
 python3 reader.py
 ```
@@ -24,10 +24,9 @@ xsections_UL2017.yaml stores the cross-sections and branching factor for each of
 UL2017_sample_reference.json lists all the NTuples you want to use for your run and a set name to call the NTuples. This will be used for LQPlotter.py
 
 ## Plotting Histograms 
-Once you have updated the Cross-sections and JSON Files, now you're able to add a few more detail into the histograms. Your able to add which signal is shown against the background. You can see an example of this on under LQplotter.py on this site. Using --sample_dir takes the NTuples stored from this location to make histograms. --hist_dir takes the histograms already created from running reader.py and adds more information to them such as adding legions or signal lines, and calculates the normalization if you run without --nonorm. --xfile place the cross-section and branching fraction file here. 
---outdir place here the directory you want your final plots to go into. --year Match up year to UL run. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a b-tagging scale factor made. Run without --nonorm to get normalizations and if you calculated the b-tagging scale factor. Look at the Btag section below for more on this.
+Once you have updated the Cross-sections and JSON Files, now you're able to add a few more detail into the histograms. Your able to add which signal is shown against the background. You can see an example of this on under LQplotter.py on this site. Using --sample_dir takes the NTuples stored from this location to make histograms. --hist_dir takes the histograms already created from running reader.py and adds more information to them such as adding legends or signal lines. --xfile place the cross-section and branching fraction file here. --outdir is the path/directory you want your final plots to go into. --year Match up to the year of the UL run, the NTuples I made are all from 2017. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a b-tagging scale factor made. Run without --nonorm to get normalizations and if you calculated the b-tagging scale factor. This will be called btag_weights.json. Look at the Btag section below for more on this.
 
-Btag should have been created and is in btag_weights.json so try to run without the --nonorm option.
+The Btag scaling factor should have already been created and is in btag_weights.json so try to run without the --nonorm option.
 ```bash
 python LQplotter.py --sample_dir /eos/user/a/argonzal/LQ_rootFiles/2017/ --hist_dir Plots/Muon/2017/ --xfile xsections_UL2017.yaml --outdir plots_2017_LQ_test/ --year 2017 --channel muon 
 ```
@@ -89,7 +88,7 @@ python3 condor_LQ_WS.py --isMC=0/1 --era=201X --njetw --infile=XXX.root
 Now the renormalizations are applied in the histograms, and the plotting script can be run as usual.
 
 ## Btag Added Note
-Added Note: I have already added --njetw into reader.py so to do the first step you would have to eliminate --njetw from a couple files. They are located in LQ_Producer.py, condor_LQ_WS.py and reader.py. njetw is located in these line, comment/uncomment them out as you will use them later on.
+Added Note: If you do need to create a new Btag. I have already added --njetw into reader.py so to do the first step you would have to eliminate --njetw from a couple files. They are located in LQ_Producer.py, condor_LQ_WS.py and reader.py. njetw is located in these line, comment/uncomment them out as you will use them later on.
 
 In python/LQ_Producer.py comment:
 https://github.com/ari-quarky/HHCoffea/blob/master/python/LQ_Producer.py#L22
