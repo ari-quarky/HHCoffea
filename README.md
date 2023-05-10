@@ -25,13 +25,10 @@ UL2017_sample_reference.json lists all the NTuples you want to use for your run 
 
 ## Plotting Histograms 
 Once you have updated the Cross-sections and JSON Files, now you're able to add a few more detail into the histograms. Your able to add which signal is shown against the background. You can see an example of this on under LQplotter.py on this site. Using --sample_dir takes the NTuples stored from this location to make histograms. --hist_dir takes the histograms already created from running reader.py and adds more information to them (such as adding legions or signal lines) and calculates the normalization (if you run without --nonorm). --xfile place the cross-section and branching fraction file here. 
---outdir place here the directory you want your final plots to go into. --year Match up year to UL run. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a b-tagging scale factor made. Run without --nonorm to get normalizations and if you calculated the b-tagging scale factor.
+--outdir place here the directory you want your final plots to go into. --year Match up year to UL run. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a b-tagging scale factor made. Run without --nonorm to get normalizations and if you calculated the b-tagging scale factor. Look at the Btag section below for more on this.
 ```bash
 python LQplotter.py --sample_dir /eos/user/a/argonzal/LQ_rootFiles/2017/ --hist_dir Plots/Muon/2017/ --xfile xsections_UL2017.yaml --outdir plots_2017_LQ_test/ --year 2017 --channel muon --nonorm
 ```
-
-## Making a b-tagging scale factor
-
 
 ## Merge files for coffea
 edit paths for input ntuples and output
@@ -77,17 +74,37 @@ python HHplotter.py --sample_dir /eos/cms/store/group/phys_higgs/HiggsExo/HH_bbZ
 ## Applying Btag Event Weight renormalization by jet bin
 This must be done once per channel and for all years. It requires running the coffea script and  running the plotting script, which outputs a JSON of the renormalizations by jet bin. Then the coffea script must be run again to make histograms with the renormalizations, and the plotting script is run once more as usual.
 
-After running coffea script the first time, get renormalizations by running the below (--btag must be run with --nonorm) for every year. By default, each year will write out to the same JSON. There's an option to overwrite this file (TODO: add channel to JSON):
+After running coffea script the first time, get renormalizations by running the below (--btag must be run with --nonorm) for every year. By default, each year will write out to the same JSON. There's an option to overwrite this file (TODO: add channel to JSON). An example is shown below:
 ```bash
-python HHplotter.py --sample_dir /eos/cms/store/group/phys_higgs/HiggsExo/HH_bbZZ_bbllqq/jlidrych/v3/2017/ --hist_dir 2017-v3/ --xfile /afs/cern.ch/work/v/vinguyen/private/CMSSW_10_6_4/src/PhysicsTools/MonoZ/data/xsections_2017.yaml --outdir plots_2017-btag --year 2017 --channel muon --nonorm --btag --filter
+python LQplotter.py --sample_dir /eos/cms/store/group/phys_higgs/HiggsExo/HH_bbZZ_bbllqq/jlidrych/v3/2017/ --hist_dir 2017-v3/ --xfile /afs/cern.ch/work/v/vinguyen/private/CMSSW_10_6_4/src/PhysicsTools/MonoZ/data/xsections_2017.yaml --outdir plots_2017-btag --year 2017 --channel muon --nonorm --btag --filter
 ```
 
 Once you have the output JSON with weights for all years, run coffea producer again with option --njetw:
 ```bash
-python3 condor_HH_WS.py --isMC=0/1 --era=201X --njetw --infile=XXX.root
+python3 condor_LQ_WS.py --isMC=0/1 --era=201X --njetw --infile=XXX.root
 ```
 
 Now the renormalizations are applied in the histograms, and the plotting script can be run as usual.
+
+## Btag Added Note
+Added Note: I have already added --njetw into reader.py so to do the first step you would have to eliminate --njetw from a couple files. They are located in LQ_Producer.py, condor_LQ_WS.py and reader.py. njetw is located in these line, comment/uncomment them out as you will use them later on.
+
+In python/LQ_Producer.py comment:
+https://github.com/ari-quarky/HHCoffea/blob/master/python/LQ_Producer.py#L22
+https://github.com/ari-quarky/HHCoffea/blob/master/python/LQ_Producer.py#L40-L47
+
+In condor_LQ_WS.py comment:
+https://github.com/ari-quarky/HHCoffea/blob/master/condor_LQ_WS.py#L23
+https://github.com/ari-quarky/HHCoffea/blob/master/condor_LQ_WS.py#L68
+https://github.com/ari-quarky/HHCoffea/blob/master/condor_LQ_WS.py#L74
+https://github.com/ari-quarky/HHCoffea/blob/master/condor_LQ_WS.py#L85
+
+In reader.py uncomment:
+https://github.com/ari-quarky/HHCoffea/blob/master/reader.py#L30
+https://github.com/ari-quarky/HHCoffea/blob/master/reader.py#L32
+
+In reader.py comment out:
+https://github.com/ari-quarky/HHCoffea/blob/master/reader.py#L33
 
 ## Requirements
 
