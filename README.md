@@ -14,17 +14,17 @@ singularity shell -B ${PWD} -B /afs -B /eos /cvmfs/unpacked.cern.ch/registry.hub
 ```
 
 ## Make/Edit Histograms and Plots
-If you want to add different types of histograms, adjust the selections, or adjust the weight/scale factors (the exception being the Btag scaling factor), go into HHCoffea/python/LQ_Producer.py and make your edits. What reader.py does is make and get the histograms out of the NTuples and stores them for our next step. Make sure you update xsections_UL2017.yaml and UL2017_sample_reference.json when you add a new NTuples into your list. The NTuples for me are stored under: /eos/user/a/argonzal/LQ_rootFiles/2017/
+If you want to add different types of histograms, adjust the selections, or adjust the weight/scale factors the exception being the Btag scaling factor, go into HHCoffea/python/LQ_Producer.py and make your edits. What reader.py does is make and get the histograms out of the NTuples and stores them for our next step. Make sure you update xsections_UL2017.yaml and UL2017_sample_reference.json when you add a new NTuples into your list. The NTuples for me are stored under: /eos/user/a/argonzal/LQ_rootFiles/2017/
 ```bash
 python3 reader.py
 ```
 
 ## Cross-sections and JSON Files
 xsections_UL2017.yaml stores the cross-sections and branching factor for each of the NTuples you want to run.
-UL2017_sample_reference.json lists all the NTuples you want to use for your run and a set name to call the NTuples (this will be used for LQPlotter.py)
+UL2017_sample_reference.json lists all the NTuples you want to use for your run and a set name to call the NTuples. This will be used for LQPlotter.py
 
 ## Plotting Histograms 
-Once you have updated the Cross-sections and JSON Files, now you're able to add a few more detail into the histograms. Your able to add which signal is shown against the background. You can see an example of this on under LQplotter.py on this site. Using --sample_dir takes the NTuples stored from this location to make histograms. --hist_dir takes the histograms already created from running reader.py and adds more information to them (such as adding legions or signal lines) and calculates the normalization (if you run without --nonorm). --xfile place the cross-section and branching fraction file here. 
+Once you have updated the Cross-sections and JSON Files, now you're able to add a few more detail into the histograms. Your able to add which signal is shown against the background. You can see an example of this on under LQplotter.py on this site. Using --sample_dir takes the NTuples stored from this location to make histograms. --hist_dir takes the histograms already created from running reader.py and adds more information to them such as adding legions or signal lines, and calculates the normalization if you run without --nonorm. --xfile place the cross-section and branching fraction file here. 
 --outdir place here the directory you want your final plots to go into. --year Match up year to UL run. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a b-tagging scale factor made. Run without --nonorm to get normalizations and if you calculated the b-tagging scale factor. Look at the Btag section below for more on this.
 
 Btag should have been created and is in btag_weights.json so try to run without the --nonorm option.
