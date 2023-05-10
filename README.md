@@ -2,7 +2,7 @@
 adapted from SUEP Coffea. HH analysis using [Coffea](https://coffeateam.github.io/coffea/)
 
 ## Quick start
-Here are the directions to create histograms using Ultra Legacy MC. Histograms defined in HHCoffea/python/LQ_Producer.py. So to begin we create the enviroment in which to run our code and create the plots. There are two ways to do so, here is one way to set up the enviorment:
+Here are the directions to create histograms using Ultra Legacy MC. Histograms defined in HHCoffea/python/LQ_Producer.py. So to begin we create the enviroment in which to run our code and create the plots. 
 
 ```bash
 mkdir LQ
