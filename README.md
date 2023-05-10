@@ -10,13 +10,14 @@ git clone git@github.com:ari-quarky/HHCoffea.git
 cd HHCoffea/
 mkdir -p Plots/Muon/2017
 singularity shell -B ${PWD} -B /afs -B /eos /cvmfs/unpacked.cern.ch/registry.hub.docker.com/coffeateam/coffea-dask:latest
-"""
+'''
 
 
 ## Make/Edit Histograms and Plots
 If you want to add different types of histograms, adjust the selections, or adjust the weight/scale factors, go into HHCoffea/python/LQ_Producer.py and make your edits. What reader.py does is make and get the histograms out of the NTuples and stores them for our next step. Make sure you update xsections_UL2017.yaml and UL2017_sample_reference.json when you add a new NTuples into your list. The NTuples for me are stored under: /eos/user/a/argonzal/LQ_rootFiles/2017/
 '''bash
 python3 reader.py
+'''
 
 #Cross Sections and JSON Files
 xsections_UL2017.yaml stores the cross-sections and branching factor for each of the NTuples you want to run.
