@@ -20,7 +20,7 @@ python3 reader.py
 ```
 
 ## Cross-sections and JSON Files
-xsections_UL2017.yaml stores the cross-sections and branching factor for each of the NTuples you want to run.
+xsections_UL2017.yaml stores the cross-sections and branching fraction for each of the NTuples you want to run.
 UL2017_sample_reference.json lists all the NTuples you want to use for your run and a set name to call the NTuples. This will be used for LQPlotter.py
 
 ## Plotting Histograms 
