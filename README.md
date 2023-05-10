@@ -26,8 +26,10 @@ UL2017_sample_reference.json lists all the NTuples you want to use for your run 
 ## Plotting Histograms 
 Once you have updated the Cross-sections and JSON Files, now you're able to add a few more detail into the histograms. Your able to add which signal is shown against the background. You can see an example of this on under LQplotter.py on this site. Using --sample_dir takes the NTuples stored from this location to make histograms. --hist_dir takes the histograms already created from running reader.py and adds more information to them (such as adding legions or signal lines) and calculates the normalization (if you run without --nonorm). --xfile place the cross-section and branching fraction file here. 
 --outdir place here the directory you want your final plots to go into. --year Match up year to UL run. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a b-tagging scale factor made. Run without --nonorm to get normalizations and if you calculated the b-tagging scale factor. Look at the Btag section below for more on this.
+
+Btag should have been created and is inbtag_weights.json so try to run without the --nonorm option.
 ```bash
-python LQplotter.py --sample_dir /eos/user/a/argonzal/LQ_rootFiles/2017/ --hist_dir Plots/Muon/2017/ --xfile xsections_UL2017.yaml --outdir plots_2017_LQ_test/ --year 2017 --channel muon --nonorm
+python LQplotter.py --sample_dir /eos/user/a/argonzal/LQ_rootFiles/2017/ --hist_dir Plots/Muon/2017/ --xfile xsections_UL2017.yaml --outdir plots_2017_LQ_test/ --year 2017 --channel muon 
 ```
 
 ## Merge files for coffea
@@ -105,6 +107,14 @@ https://github.com/ari-quarky/HHCoffea/blob/master/reader.py#L32
 
 In reader.py comment out:
 https://github.com/ari-quarky/HHCoffea/blob/master/reader.py#L33
+
+## More Info on Selections
+After you have a Btag, in the updated ntuples, you can also find the “event_category” variable. This variable is used to classify events into 4 category:
+event_category==1: 2 muons, opposite sign(electric charge), isolated
+event_category==2: 2 muons, opposite sign, at least one muon isnt isolated
+event_category==3: 2 muons, same sign, isolated
+event_category==4: 2 muons, same sign, at least one muon isnt isolated
+We will use this variable for the data driven estimation (ABCD method) of QCD background. The selections (in python/LQ_Producer.py) I used are based on this, with selection "signal_btag" representive of QCD_A = event_category==1, "QCD_B" = event_category==2, "QCD_C" = event_category==3, and "QCD_D" = event_category==4
 
 ## Requirements
 
