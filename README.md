@@ -25,10 +25,13 @@ UL2017_sample_reference.json lists all the NTuples you want to use for your run 
 
 ## Plotting Histograms 
 Once you have updated the Cross-sections and JSON Files, now you're able to add a few more detail into the histograms. Your able to add which signal is shown against the background. You can see an example of this on under LQplotter.py on this site. Using --sample_dir takes the NTuples stored from this location to make histograms. --hist_dir takes the histograms already created from running reader.py and adds more information to them (such as adding legions or signal lines) and calculates the normalization (if you run without --nonorm). --xfile place the cross-section and branching fraction file here. 
---outdir place here the directory you want your final plots to go into. --year Match up year to UL run. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a background scaling factor aka btag made. Run without --nonorm to get normalization and if you calculated the background scaling factor aka btag.
+--outdir place here the directory you want your final plots to go into. --year Match up year to UL run. --channel place specific channel you want to run here (Ex: --channel muon, or --channel electron). Add --nonorm if you don't want to calculate the normalization and don't have a b-tagging scale factor made. Run without --nonorm to get normalizations and if you calculated the b-tagging scale factor.
 ```bash
 python LQplotter.py --sample_dir /eos/user/a/argonzal/LQ_rootFiles/2017/ --hist_dir Plots/Muon/2017/ --xfile xsections_UL2017.yaml --outdir plots_2017_LQ_test/ --year 2017 --channel muon --nonorm
 ```
+
+## Making a b-tagging scale factor
+
 
 ## Merge files for coffea
 edit paths for input ntuples and output
@@ -39,7 +42,7 @@ python merger.py
 ## To run the producer
 histograms are defined in HH_Producer.py
 ```bash
-python3 condor_HH_WS.py --isMC=0/1 --era=201X --infile=XXX.root
+python3 condor_LQ_WS.py --isMC=0/1 --era=201X --infile=XXX.root
 ```
 
 If you do not have the requirements set up then you can also run this through the docker container that the coffea team provides. This is simple and easy to do. You just need to enter the Singularity and then issue the command above. To do this use:
